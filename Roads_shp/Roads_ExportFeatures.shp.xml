@@ -1,0 +1,211 @@
+<metadata xml:lang="en">
+	<Esri>
+		<scaleRange>
+			<maxScale>5000</maxScale>
+			<minScale>150000000</minScale>
+		</scaleRange>
+		<CreaDate>2023-08-31</CreaDate>
+		<CreaTime>22202800</CreaTime>
+		<ModDate>20231207</ModDate>
+		<ModTime>16550700</ModTime>
+		<PublishStatus>editor:esri.dijit.metadata.editor</PublishStatus>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<ArcGISstyle>ISO 19139 Metadata Implementation Specification</ArcGISstyle>
+		<ArcGISProfile>ISO19139</ArcGISProfile>
+		<MapLyrSync>false</MapLyrSync>
+		<SyncOnce>FALSE</SyncOnce>
+		<SyncDate>20231207</SyncDate>
+		<SyncTime>16550700</SyncTime>
+		<DataProperties>
+			<itemProps>
+				<imsContentType>002</imsContentType>
+				<itemName>SD_WEBPROD.QPP_ROAD_HIERARCHY</itemName>
+				<nativeExtBox>
+					<westBL>473614.667100</westBL>
+					<eastBL>519061.894900</eastBL>
+					<southBL>6940345.637800</southBL>
+					<northBL>6982427.858400</northBL>
+					<exTypeCode>1</exTypeCode>
+				</nativeExtBox>
+				<itemLocation><linkage Sync="TRUE">file://\\CIVLB147PC10\C$\Users\cai186-adm\Documents\ArcGIS\Projects\UtilityData\Surrounding_shp\Roads_ExportFeatures.shp</linkage><protocol Sync="TRUE">Local Area Network</protocol></itemLocation><itemSize Sync="TRUE">0.000</itemSize></itemProps>
+			<coordRef>
+				<type>Projected</type>
+				<geogcsn>GCS_GDA_1994</geogcsn>
+				<projcsn>GDA_1994_MGA_Zone_56</projcsn>
+				<csUnits>Linear Unit: Meter (1.000000)</csUnits>
+				<peXml>&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/10.6'&gt;&lt;WKT&gt;PROJCS[&amp;quot;GDA_1994_MGA_Zone_56&amp;quot;,GEOGCS[&amp;quot;GCS_GDA_1994&amp;quot;,DATUM[&amp;quot;D_GDA_1994&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Transverse_Mercator&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,500000.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,10000000.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,153.0],PARAMETER[&amp;quot;Scale_Factor&amp;quot;,0.9996],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,0.0],UNIT[&amp;quot;Meter&amp;quot;,1.0],AUTHORITY[&amp;quot;EPSG&amp;quot;,28356]]&lt;/WKT&gt;&lt;XOrigin&gt;-5120900&lt;/XOrigin&gt;&lt;YOrigin&gt;1900&lt;/YOrigin&gt;&lt;XYScale&gt;10000&lt;/XYScale&gt;&lt;ZOrigin&gt;0&lt;/ZOrigin&gt;&lt;ZScale&gt;1&lt;/ZScale&gt;&lt;MOrigin&gt;0&lt;/MOrigin&gt;&lt;MScale&gt;1&lt;/MScale&gt;&lt;XYTolerance&gt;0.001&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;28356&lt;/WKID&gt;&lt;LatestWKID&gt;28356&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml>
+			</coordRef>
+			<lineage><Process ToolSource="i:\arcgis pro 3.1\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx\ExportFeatures" Date="20231207" Time="162516">ExportFeatures Roads C:\Users\cai186-adm\Documents\ArcGIS\Projects\UtilityData\UtilityData.gdb\Roads_ExportFeatures # NOT_USE_ALIAS "OVL_CAT "Overlay category code" true true false 3 Text 0 0,First,#,Roads,OVL_CAT,0,3;OVL2_CAT "Sub-category code" true true false 7 Text 0 0,First,#,Roads,OVL2_CAT,0,7;ROUTE_TYPE "Route Type" true true false 21 Text 0 0,First,#,Roads,ROUTE_TYPE,0,21;Shape__Length "Shape__Length" false true true 0 Double 0 0,First,#,Roads,Shape__Length,-1,-1" #</Process><Process ToolSource="i:\arcgis pro 3.1\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\CopyFeatures" Date="20231207" Time="165511">CopyFeatures Roads_ExportFeatures C:\Users\cai186-adm\Documents\ArcGIS\Projects\UtilityData\Surrounding_shp\Roads_ExportFeatures.shp # # # #</Process></lineage></DataProperties>
+	</Esri>
+	<mdHrLv>
+		<ScopeCd value="005"/>
+	</mdHrLv>
+	<mdHrLvName>dataset</mdHrLvName>
+	<mdFileID>1693889344947r3219923660675885</mdFileID>
+	<mdLang>
+		<languageCode value="eng"/>
+		<countryCode value="USA" Sync="TRUE"></countryCode></mdLang>
+	<mdChar>
+		<CharSetCd value="004"/>
+	</mdChar>
+	<mdContact>
+		<rpOrgName>Brisbane City Council</rpOrgName>
+		<rpPosName>Open Data</rpPosName>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+		<rpCntInfo>
+			<cntAddress>
+				<eMailAdd>opendata@brisbane.qld.gov.au</eMailAdd>
+			</cntAddress>
+			<cntPhone>
+				<voiceNum>+61 7 3403 8888</voiceNum>
+			</cntPhone>
+		</rpCntInfo>
+	</mdContact>
+	<mdDateSt>2023-08-31</mdDateSt>
+	<mdTimeSt>14:49:04.56</mdTimeSt>
+	<mdMaint>
+		<maintFreq>
+			<MaintFreqCd value="009"/>
+		</maintFreq>
+	</mdMaint>
+	<spdoinfo>
+		<ptvctinf><esriterm Name="Roads_ExportFeatures"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="3" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">0</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf></spdoinfo>
+	<dataIdInfo>
+		<idCitation>
+			<resTitle>City Plan 2014 — Road hierarchy overlay — Road hierarchy</resTitle>
+			<date>
+				<createDate>2014-06-30T00:00:00</createDate>
+				<reviseDate>2023-09-01T00:00:00</reviseDate>
+			</date>
+			<resEd>v28.00/2023</resEd>
+			<resEdDate>2023-09-01</resEdDate>
+			<presForm>
+				<PresFormCd value="005"/>
+			</presForm>
+		</idCitation>
+		<idAbs>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;This feature class is shown on the Road hierarchy overlay map (map reference: OM-018.2).&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;This feature class includes the following sub-categories:&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(a) Motorway sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(b) Arterial road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(c) Suburban road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(d) District road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(e) Neighbourhood road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(f) Local road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(g) Future motorway sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(h) Future arterial road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(i) Future suburban road sub-category;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;(j) Future district road sub-category.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 11 0;"&gt;&lt;SPAN&gt;For information about the overlay and how it is applied, please refer to the Brisbane City Plan 2014 document.&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</idAbs>
+		<idPurp>This feature class is associated with the Road hierarchy overlay from Brisbane City Plan 2014.</idPurp>
+		<idCredit>© Brisbane City Council 2023</idCredit>
+		<envirDesc>Version 6.2 (Build 9200) ; Esri ArcGIS 10.6.1.9273</envirDesc>
+		<dataLang>
+			<languageCode value="eng"/>
+			<countryCode value="AUS"/>
+		</dataLang>
+		<dataChar>
+			<CharSetCd value="004"/>
+		</dataChar>
+		<spatRpType>
+			<SpatRepTypCd value="001"/>
+		</spatRpType>
+		<searchKeys>
+			<keyword>City Plan</keyword>
+			<keyword>Road hierarchy</keyword>
+			<keyword>Planning</keyword>
+			<keyword>Brisbane City Council</keyword>
+			<keyword>property and planning</keyword>
+			<keyword>ArcGIS</keyword>
+		</searchKeys>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox>
+					<exTypeCode>1</exTypeCode>
+					<westBL>152.732479</westBL>
+					<eastBL>153.193269</eastBL>
+					<southBL>-27.661035</southBL>
+					<northBL>-27.280863</northBL>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="009"/>
+			</maintFreq>
+			<dateNext>2025-09-01</dateNext>
+		</resMaint>
+		<resConst>
+			<Consts>
+				<useLimit>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;This material is licensed under a &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;A href="https://creativecommons.org:443/licenses/by/4.0"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Creative Commons - Attribution 4.0&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/A&gt;&lt;SPAN&gt; licence.&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 7 0;"&gt;&lt;SPAN&gt;No access or use limitations.&lt;/SPAN&gt;&lt;SPAN /&gt;&lt;SPAN&gt;Discrepancies may occur when changes to these boundaries do not coincide with changes to cadastral information.&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 11 0;"&gt;&lt;SPAN&gt;Further discrepancies may occur as a result of the time delay between Development Approvals and subsequent amendments to mapping information.&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</useLimit>
+			</Consts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<useConsts>
+					<RestrictCd value="008"/>
+				</useConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+	</dataIdInfo>
+	<distInfo>
+		<distFormat>
+			<formatName>Feature Class</formatName>
+		</distFormat>
+		<distTranOps><transSize Sync="TRUE">0.000</transSize></distTranOps></distInfo>
+	<spatRepInfo>
+		<VectSpatRep><geometObjs Name="Roads_ExportFeatures"><geoObjTyp><GeoObjTypCd value="002" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">0</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo>
+	<eainfo>
+		<detailed Name="Roads_ExportFeatures">
+			<enttyp>
+				<enttypl>SD_WEBPROD.QPP_ROAD_HIERARCHY</enttypl>
+				<enttypt>Feature Class</enttypt>
+				<enttypc>41753</enttypc>
+			</enttyp>
+			<attr><attrlabl Sync="TRUE">FID</attrlabl><attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><attr>
+				<attrlabl>OVL_CAT</attrlabl>
+				<attalias>Overlay category code</attalias>
+				<attrtype>String</attrtype>
+				<attwidth>3</attwidth>
+				<atprecis>0</atprecis>
+				<attscale>0</attscale>
+			</attr>
+			<attr>
+				<attrlabl>OVL2_CAT</attrlabl>
+				<attalias>Sub-category code</attalias>
+				<attrtype>String</attrtype>
+				<attwidth>7</attwidth>
+				<atprecis>0</atprecis>
+				<attscale>0</attscale>
+			</attr>
+			<attr>
+				<attrlabl>ROUTE_TYPE</attrlabl>
+				<attalias>Route Type</attalias>
+				<attrtype>String</attrtype>
+				<attwidth>21</attwidth>
+				<atprecis>0</atprecis>
+				<attscale>0</attscale>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE</attrlabl>
+				<attalias>SHAPE</attalias>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrtype>Geometry</attrtype>
+				<attwidth>4</attwidth>
+				<atprecis>0</atprecis>
+				<attscale>0</attscale>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr><attrlabl Sync="TRUE">Shape_Leng</attrlabl><attalias Sync="TRUE">Shape_Leng</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr></detailed>
+	</eainfo>
+	<refSysInfo>
+		<RefSystem>
+			<refSysID>
+				<identCode code="28356"/>
+				<idCodeSpace>EPSG</idCodeSpace>
+				<idVersion>2.1(3.0.1)</idVersion>
+			</refSysID>
+		</RefSystem>
+	</refSysInfo>
+</metadata>
