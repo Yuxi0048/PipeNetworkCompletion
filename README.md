@@ -4,7 +4,7 @@ This document describes the code, data, and results for the project "Underground
 
 ### Main Program
 
-* **File:** `Inductive.ipynb` (Contains functional but uncommented code)
+* **File:** `Inductive.ipynb` (Contains functional but ugly code)
 
 **Notes:**
 
@@ -36,7 +36,7 @@ This document describes the code, data, and results for the project "Underground
     * `/Sewer_shp/SewersqlSewerP_ExportFeature.shp`
     * `/Roads_shp/Roads_ExportFeatures.shp`
     * `MH_Road.pkl`
-* **Preprocessing Script:** `process.py` (Contains functional but uncommented code for data preprocessing)
+* **Preprocessing Script:** `process.py` (Contains functional but ugly code for data preprocessing)
 
 ### Contact
 
