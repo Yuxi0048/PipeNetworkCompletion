@@ -42,16 +42,10 @@ This document describes the code, data, and results for the project "Underground
 
 For any questions regarding implementation details, feel free to contact Yuxi Zhang at zhan2889@purdue.edu.
 
-### Reference Paper
-
-The research is based on the following paper:
-
+### Citation
 * **Title:** Underground Utility Network Completion based on Spatial Contextual Information of Ground Facilities and Utility Anchor Points using Graph Neural Networks
 * **Authors:** Yuxi Zhang and Hubo Cai
 * **Link: https://www.iaarc.org/publications/fulltext/120_ISARC_2024_Paper_249.pdf**
-
-### Citation
-
 ```markdown
 @inproceedings{10.22260/ISARC2024/0121,
   doi = {10.22260/ISARC2024/0121},
