@@ -8,7 +8,7 @@ This document describes the code, data, and results for the project "Underground
 
 **Notes:**
 
-* The code for different architecture variations is not saved explicitly. Refer to the commented sections within the notebook to reproduce them.
+* The code for different architecture variations is not saved. Refer to the commented sections within the notebook to reproduce them.
 * You will need to manually modify file paths and names to save models and results on your local machine.
 
 ### Results
