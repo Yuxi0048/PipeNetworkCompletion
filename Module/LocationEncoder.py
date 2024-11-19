@@ -1,5 +1,20 @@
 import torch
 import math
+"""
+Author: Gengchen Mai
+GitHub Repository: https://github.com/gengchenmai/space2vec
+
+If you use this code, please cite the following paper:
+
+@inproceedings{space2vec_iclr2020,
+    title={Multi-Scale Representation Learning for Spatial Feature Distributions using Grid Cells},
+    author={Mai, Gengchen and Janowicz, Krzysztof and Yan, Bo and Zhu, Rui and Cai, Ling and Lao, Ni},
+    booktitle={The Eighth International Conference on Learning Representations},
+    year={2020},
+    organization={openreview}
+}
+"""
+
 def _cal_freq_list(freq_init, frequency_num, max_radius, min_radius):
     if freq_init == "random":
         freq_list = torch.rand([frequency_num]) * max_radius
