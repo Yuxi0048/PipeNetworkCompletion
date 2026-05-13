@@ -41,6 +41,16 @@ results/
 Maintained code should read from these paths through
 `pipe_network_completion.paths` instead of hard-coding file locations.
 
+## Required Local Inputs
+
+`process.py` expects the raw inputs in this layout:
+
+| Source | Local folder | Required files |
+| --- | --- | --- |
+| Urban Utilities GIS data | `data/raw/gis/sewer/` | `SewerManholes_ExportFeatures.shp`, `SewerGravityMa_ExportFeature1.shp`, `SewerGravityMa_ExportFeature2.shp`, `SewersqlSewerP_ExportFeature.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
+| Brisbane City Council Open Data | `data/raw/gis/roads/` | `Roads_ExportFeatures.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
+| Locally generated near table | `data/raw/mh_road/` | `MH_Road.pkl`, generated from the manhole and road layers as a nearest-feature table with `OBJECTID`, `NEAR_FID`, `NEAR_POS`, `NEAR_DIST`, and `SIDE` fields |
+
 ## Artifact Access
 
 Users should obtain source GIS data directly from the relevant public data

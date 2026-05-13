@@ -50,6 +50,9 @@ notebooks, and tests.
 
 ### Full Test-Split Evaluation
 
+Run this only after the local graph data, checkpoint, and metrics files are
+available under the documented paths:
+
 ```bash
 python scripts/evaluate_checkpoint.py \
   --checkpoint models/checkpoints/model1212_hiddensize_128_drop_00.pt \
@@ -67,16 +70,22 @@ refactored modules to the notebook workflow and archived branches;
 The command-line workflow follows the artifact lifecycle:
 
 ```text
-data/raw/ + data/raw_gis/
-  -> pipe_network_completion.process
-  -> data/interim/
+data/raw/
+  gis/sewer/              Urban Utilities sewer shapefile bundles
+  gis/roads/              Brisbane City Council road shapefile bundle
+  mh_road/MH_Road.pkl     local manhole-road nearest-feature table
+  -> process.py
+  -> data/interim/*.pkl
   -> scripts/build_graphs.py
-  -> data/processed/graphs/
+  -> data/processed/graphs/{train,val,test}_data.pkl
+  + models/checkpoints/*.pt
+  + results/metrics/*.csv
   -> scripts/evaluate_checkpoint.py
   -> checkpoint metrics
 ```
 
-1. **Preprocess GIS shapefiles** into `*_proc.pkl` + `split_mask.pkl`:
+1. **Preprocess GIS shapefiles and the manhole-road near table** into
+   `*_proc.pkl` + `split_mask.pkl`:
 
    ```bash
    python process.py
@@ -144,6 +153,14 @@ not redistributed in this repository. Users should obtain source GIS data
 directly from the relevant public data providers and follow their terms of use.
 The authors do not redistribute raw or derived data artifacts unless separate
 written permission is obtained from the relevant data providers.
+
+Required local inputs for `process.py`:
+
+| Source | Local folder | Required files |
+| --- | --- | --- |
+| Urban Utilities GIS data | `data/raw/gis/sewer/` | `SewerManholes_ExportFeatures.shp`, `SewerGravityMa_ExportFeature1.shp`, `SewerGravityMa_ExportFeature2.shp`, `SewersqlSewerP_ExportFeature.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
+| Brisbane City Council Open Data | `data/raw/gis/roads/` | `Roads_ExportFeatures.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
+| Locally generated near table | `data/raw/mh_road/` | `MH_Road.pkl`, generated from the manhole and road layers as a nearest-feature table with `OBJECTID`, `NEAR_FID`, `NEAR_POS`, `NEAR_DIST`, and `SIDE` fields |
 
 Prepared artifacts:
 
