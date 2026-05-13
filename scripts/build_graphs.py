@@ -3,7 +3,7 @@
 Reads the `*_proc.pkl` artifacts produced by `process.py` and the
 `split_mask.pkl` containing connected-component splits, then writes
 `train_data.pkl`, `val_data.pkl`, `test_data.pkl` under
-`data/processed/graphs/` for `scripts/replicate_results.py`.
+`data/processed/graphs/` for `scripts/evaluate_checkpoint.py`.
 
 Mirrors the notebook cell:
 

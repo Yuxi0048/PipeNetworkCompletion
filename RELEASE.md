@@ -33,7 +33,7 @@ ruff check pipe_network_completion scripts process.py tests
 
 # 3. End-to-end replication smoke test
 python scripts/verify_environment.py --load-data
-python scripts/replicate_results.py --max-batches 2
+python scripts/evaluate_checkpoint.py --max-batches 2
 
 # 4. CHANGELOG.md has an entry for the new version (move [Unreleased] -> [X.Y.Z])
 ```

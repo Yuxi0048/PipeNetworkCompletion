@@ -63,7 +63,7 @@ python scripts/build_graphs.py
 ## Smoke Test Replication
 
 ```bash
-python scripts/replicate_results.py --max-batches 2
+python scripts/evaluate_checkpoint.py --max-batches 2
 ```
 
 This confirms that the saved model, PyTorch Geometric sampler, and prepared
@@ -74,7 +74,7 @@ class; the full split command below performs the actual metrics comparison.
 ## Full Test-Split Replication
 
 ```bash
-python scripts/replicate_results.py \
+python scripts/evaluate_checkpoint.py \
   --checkpoint models/checkpoints/model1212_hiddensize_128_drop_00.pt \
   --metrics results/metrics/model_metrics1212.csv \
   --split test

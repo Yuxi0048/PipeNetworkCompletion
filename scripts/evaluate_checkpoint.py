@@ -1,3 +1,5 @@
+"""Evaluate a saved checkpoint against prepared graph data."""
+
 from __future__ import annotations
 
 import argparse

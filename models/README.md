@@ -1,7 +1,7 @@
 # Model Checkpoints
 
 Saved PyTorch checkpoints from the original notebook runs. Checkpoints are
-distributed through release assets, not tracked in Git. The replication CLI
+distributed through release assets, not tracked in Git. The evaluation CLI
 reads them from `models/checkpoints/` after `scripts/download_assets.py`
 extracts the artifact bundle.
 
@@ -17,14 +17,14 @@ model<arch>_hiddensize_<H>_drop_<DD>.pt
 | `<H>` | `32`, `64`, `128`, `256` | Hidden channel width |
 | `<DD>` | `00`, `02`, `04`, `06` | Dropout rate (`DD / 10`, e.g. `04` -> 0.4) |
 
-`scripts/replicate_results.py` infers `<H>` and `<DD>` from the filename and
+`scripts/evaluate_checkpoint.py` infers `<H>` and `<DD>` from the filename and
 reads `<arch>` from the saved state dict. Keep checkpoint filenames aligned
 with the metrics CSVs.
 
 ## Architecture Codes
 
 The `<arch>` token maps to layer stacks defined in
-`scripts/replicate_results.py` and `pipe_network_completion/model.py`:
+`scripts/evaluate_checkpoint.py` and `pipe_network_completion/model.py`:
 
 | `<arch>` | Layers | Skip connections | Reported in |
 | --- | --- | --- | --- |
@@ -38,7 +38,7 @@ The `<arch>` token maps to layer stacks defined in
 
 ## Default Replication Target
 
-`scripts/replicate_results.py` defaults to:
+`scripts/evaluate_checkpoint.py` defaults to:
 
 - Checkpoint: `model1212_hiddensize_128_drop_00.pt`
 - Metrics CSV: `results/metrics/model_metrics1212.csv`

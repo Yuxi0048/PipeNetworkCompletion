@@ -27,7 +27,7 @@ Refactored by Codex and Claude Code on 2026-05-13.
 .\.conda\pipe-network-completion\python.exe -m pip install -e .
 .\.conda\pipe-network-completion\python.exe scripts\download_assets.py --version v1.0.0
 .\.conda\pipe-network-completion\python.exe scripts\verify_environment.py --load-data
-.\.conda\pipe-network-completion\python.exe scripts\replicate_results.py --max-batches 2
+.\.conda\pipe-network-completion\python.exe scripts\evaluate_checkpoint.py --max-batches 2
 ```
 
 ### macOS / Linux (bash)
@@ -38,7 +38,7 @@ conda activate pipe-network-completion
 pip install -e .
 python scripts/download_assets.py --version v1.0.0
 python scripts/verify_environment.py --load-data
-python scripts/replicate_results.py --max-batches 2
+python scripts/evaluate_checkpoint.py --max-batches 2
 ```
 
 `pip install -e .` is optional but recommended; it makes the package importable
@@ -47,7 +47,7 @@ from any working directory.
 ### Full Test-Split Replication
 
 ```bash
-python scripts/replicate_results.py \
+python scripts/evaluate_checkpoint.py \
   --checkpoint models/checkpoints/model1212_hiddensize_128_drop_00.pt \
   --metrics results/metrics/model_metrics1212.csv \
   --split test
@@ -64,7 +64,7 @@ checkpoint naming scheme.
 The reproducible CLI is three steps:
 
 ```text
-data/raw/  ──process.py──▶  data/interim/  ──scripts/build_graphs.py──▶  data/processed/graphs/  ──scripts/replicate_results.py──▶  metrics
+data/raw/  ──process.py──▶  data/interim/  ──scripts/build_graphs.py──▶  data/processed/graphs/  ──scripts/evaluate_checkpoint.py──▶  metrics
 ```
 
 1. **Preprocess GIS shapefiles** into `*_proc.pkl` + `split_mask.pkl`:
@@ -82,7 +82,7 @@ data/raw/  ──process.py──▶  data/interim/  ──scripts/build_graphs.
 3. **Evaluate a saved checkpoint** against the published metrics:
 
    ```bash
-   python scripts/replicate_results.py
+   python scripts/evaluate_checkpoint.py
    ```
 
 Each script supports `--help`.
@@ -176,7 +176,7 @@ documented in [RELEASE.md](RELEASE.md), and the version history lives in
 ## Reproducibility Notes
 
 The original notebook used `LinkNeighborLoader` with finite neighborhood
-sampling. The replication script sets Python, NumPy, and PyTorch seeds, but
+sampling. The checkpoint evaluation script sets Python, NumPy, and PyTorch seeds, but
 exact historical metric matching can still vary slightly with PyTorch
 Geometric, sampler backend, hardware, and random state.
 
