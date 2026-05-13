@@ -1,4 +1,4 @@
-# PipeNetworkCompletion
+# Topology Prediction of Underground Utility Networks with Graph Neural Networks
 
 [![CI](https://github.com/Yuxi0048/PipeNetworkCompletion/actions/workflows/ci.yml/badge.svg)](https://github.com/Yuxi0048/PipeNetworkCompletion/actions/workflows/ci.yml)
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
@@ -8,13 +8,13 @@
 <!-- After enabling Zenodo for this repo (see RELEASE.md), uncomment: -->
 <!-- [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
 
-Code, data, and saved model artifacts for **Underground Utility Network
-Completion based on Spatial Contextual Information of Ground Facilities and
-Utility Anchor Points using Graph Neural Networks**.
+Research code package for **Underground Utility Network Completion based on
+Spatial Contextual Information of Ground Facilities and Utility Anchor Points
+using Graph Neural Networks**.
 
-The original research notebook and notebook-era helper code are kept under
-[legacy/](legacy/). Refactored modules and scripts provide the installable
-package and CLI entry points for environment checks and replication.
+The repository includes an installable Python package, command-line evaluation
+scripts, environment checks, tests, documentation, release-based data artifacts,
+and branch-based source traceability to the notebook-era repository state.
 
 Refactored by Codex and Claude Code on 2026-05-13.
 
@@ -41,10 +41,10 @@ python scripts/verify_environment.py --load-data
 python scripts/evaluate_checkpoint.py --max-batches 2
 ```
 
-`pip install -e .` is optional but recommended; it makes the package importable
-from any working directory.
+Editable installation keeps `pipe_network_completion` importable from scripts,
+notebooks, and tests.
 
-### Full Test-Split Replication
+### Full Test-Split Evaluation
 
 ```bash
 python scripts/evaluate_checkpoint.py \
@@ -53,18 +53,23 @@ python scripts/evaluate_checkpoint.py \
   --split test
 ```
 
-See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for details,
-[docs/TRACEABILITY.md](docs/TRACEABILITY.md) for how the refactored files map
-back to the original notebook, [docs/DATA_LAYOUT.md](docs/DATA_LAYOUT.md) for
-the artifact layout, and [models/README.md](models/README.md) for the
-checkpoint naming scheme.
+Supporting documentation: [docs/TRACEABILITY.md](docs/TRACEABILITY.md) maps
+refactored modules to the notebook workflow and archived branches;
+[docs/DATA_LAYOUT.md](docs/DATA_LAYOUT.md) documents artifact locations; and
+[models/README.md](models/README.md) explains the checkpoint naming scheme.
 
 ## Pipeline
 
-The reproducible CLI is three steps:
+The command-line workflow follows the artifact lifecycle:
 
 ```text
-data/raw/  ──process.py──▶  data/interim/  ──scripts/build_graphs.py──▶  data/processed/graphs/  ──scripts/evaluate_checkpoint.py──▶  metrics
+data/raw/ + data/raw_gis/
+  -> pipe_network_completion.process
+  -> data/interim/
+  -> scripts/build_graphs.py
+  -> data/processed/graphs/
+  -> scripts/evaluate_checkpoint.py
+  -> checkpoint metrics
 ```
 
 1. **Preprocess GIS shapefiles** into `*_proc.pkl` + `split_mask.pkl`:
@@ -89,12 +94,8 @@ Each script supports `--help`.
 
 ## Main Artifacts
 
-- [legacy/Inductive.ipynb](legacy/Inductive.ipynb): original Colab notebook and
-  source of the training, evaluation, explanation, and plotting workflow.
-- [legacy/Module/](legacy/Module/): original notebook support namespace retained
-  for traceability.
-- [process.py](process.py): raw GIS preprocessing script, now parameterized for
-  local repo paths.
+- [process.py](process.py): raw GIS preprocessing script parameterized for local
+  repo paths.
 - [scripts/build_graphs.py](scripts/build_graphs.py): assembles
   `train_data.pkl`, `val_data.pkl`, `test_data.pkl` from the interim pickles.
 - [pipe_network_completion/dataset.py](pipe_network_completion/dataset.py):
@@ -103,12 +104,33 @@ Each script supports `--help`.
   importable GNN model definition refactored from the notebook.
 - [pipe_network_completion/evaluation.py](pipe_network_completion/evaluation.py):
   shared binary classification metrics.
-- [data/](data/): placeholder layout for raw, interim, processed, and
-  experiment data artifacts. Large artifacts are distributed through releases.
+- [data/](data/): local layout for raw, interim, processed, and experiment data
+  artifacts populated from release assets.
 - [models/checkpoints/](models/checkpoints/): saved PyTorch model checkpoints
   (see [models/README.md](models/README.md) for the naming scheme).
 - [results/metrics/](results/metrics/): recorded metrics from previous model
   runs.
+
+## Source Traceability
+
+The `main` branch is the maintained research code package. Notebook-era files
+and earlier repository layouts are preserved in archived remote branches, so
+readers can inspect the historical code without adding those files to the
+current runnable tree.
+
+```bash
+git fetch --all --tags
+git branch -r
+git switch --detach origin/Legacy-Final
+```
+
+Use `origin/Legacy-Final` for the previous final research state and
+`origin/Legacy-main` for the earlier main-branch snapshot. Return to the current
+codebase with:
+
+```bash
+git switch main
+```
 
 ## Data
 
@@ -133,16 +155,18 @@ Raw GIS artifacts:
 - `data/raw/gis/roads/Roads_ExportFeatures.shp`
 - `data/raw/mh_road/MH_Road.pkl`
 
-Large data and checkpoint artifacts are not tracked in Git. Download the
-release asset before running replication:
+Data and checkpoint artifacts are provided through the release bundle. The
+download helper fetches the archive, verifies the SHA-256 sidecar, and extracts
+the prepared `data/`, `models/`, and `results/` files into the working tree:
 
 ```bash
 python scripts/download_assets.py --version v1.0.0
 ```
 
-The default release bundle contains prepared graphs, interim pickles,
+The standard release bundle contains prepared graphs, interim pickles,
 split-shapefile exports, experiment variants, model checkpoints, and metrics.
-Raw GIS inputs may be distributed separately if data licensing requires it.
+Raw GIS inputs are managed as separate project data when distribution terms
+require it.
 
 ## Tests
 
@@ -154,7 +178,8 @@ pip install -e ".[test]"
 pytest
 ```
 
-These tests do not load checkpoints or large pickles.
+Artifact-backed validation is handled by
+`scripts/verify_environment.py --load-data`.
 
 ## Releases
 
@@ -168,21 +193,27 @@ with:
 python scripts/download_assets.py --version v1.0.0
 ```
 
-The helper requires the [GitHub CLI](https://cli.github.com/); if `gh` is
-unavailable it prints the equivalent `curl` command. The release procedure is
+The helper uses the [GitHub CLI](https://cli.github.com/) and prints the
+equivalent `curl` command for manual downloads. The release procedure is
 documented in [RELEASE.md](RELEASE.md), and the version history lives in
 [CHANGELOG.md](CHANGELOG.md).
 
-## Reproducibility Notes
+## Run Notes
 
-The original notebook used `LinkNeighborLoader` with finite neighborhood
-sampling. The checkpoint evaluation script sets Python, NumPy, and PyTorch seeds, but
-exact historical metric matching can still vary slightly with PyTorch
-Geometric, sampler backend, hardware, and random state.
+Evaluation uses `LinkNeighborLoader` with finite neighborhood sampling, matching
+the notebook workflow. The checkpoint evaluation script sets Python, NumPy, and
+PyTorch seeds and reports observed metrics beside the published metrics row.
 
-For traceability, the legacy notebook remains the record for architecture
-variants that were only kept as commented cells. The refactored CLI targets the
-saved model/data evaluation path.
+The archived notebook on `origin/Legacy-Final` records exploratory architecture
+variants. The maintained CLI focuses on checkpoint evaluation with the prepared
+graph artifacts.
+
+## Acknowledgments
+
+This project appreciates [Urban Utilities](https://www.arcgis.com/home/item.html?id=36fdac21178a4364a04f9516aa0703e5%2F1000)
+for public access to high-quality utility network data, and
+[Brisbane City Council Open Data](https://www.brisbane.qld.gov.au/business/tools-and-resources/open-data)
+for public geospatial context used alongside those utility assets.
 
 ## Citation
 
