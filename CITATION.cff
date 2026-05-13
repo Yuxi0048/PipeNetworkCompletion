@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code, data, or implementation, please cite the following paper."
+title: "PipeNetworkCompletion: Underground Utility Network Completion using Spatial Context and Graph Neural Networks"
+authors:
+  - family-names: "Zhang"
+    given-names: "Yuxi"
+  - family-names: "Cai"
+    given-names: "Hubo"
+year: 2024
+repository-code: "https://github.com/Yuxi0048/PipeNetworkCompletion"
+preferred-citation:
+  type: conference-paper
+  title: "Underground Utility Network Completion based on Spatial Contextual Information of Ground Facilities and Utility Anchor Points using Graph Neural Networks"
+  authors:
+    - family-names: "Zhang"
+      given-names: "Yuxi"
+    - family-names: "Cai"
+      given-names: "Hubo"
+  year: 2024
+  doi: "10.22260/ISARC2024/0121"
+  conference:
+    name: "41st International Symposium on Automation and Robotics in Construction"
