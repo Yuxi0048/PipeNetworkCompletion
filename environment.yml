@@ -1,0 +1,30 @@
+name: pipe-network-completion
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy=1.25.2
+  - pandas=1.5.3
+  - scipy=1.11.4
+  - scikit-learn=1.2.2
+  - pytorch=2.1.0
+  - cpuonly
+  - geopandas=0.13.2
+  - shapely=2.0.*
+  - pyproj
+  - fiona
+  - folium
+  - matplotlib
+  - seaborn
+  - tqdm=4.66.*
+  - ipykernel
+  - pip:
+      - --find-links https://data.pyg.org/whl/torch-2.1.0+cpu.html
+      - torch_scatter
+      - torch_sparse
+      - torch_cluster
+      - torch_spline_conv
+      - torch_geometric==2.5.3
+      - captum==0.7.0

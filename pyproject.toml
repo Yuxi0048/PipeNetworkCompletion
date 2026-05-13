@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipe_network_completion"
+version = "1.0.0"
+description = "Underground utility network completion using spatial context and graph neural networks."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10,<3.12"
+authors = [
+    { name = "Yuxi Zhang", email = "zhan2889@purdue.edu" },
+    { name = "Hubo Cai" },
+]
+keywords = ["graph-neural-network", "gis", "utility-network", "pytorch-geometric"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+]
+
+# Runtime deps are managed via environment.yml because PyTorch Geometric's
+# C++ extension wheels need pinned torch/CUDA combinations. This section is
+# kept minimal so `pip install -e .` works inside that environment
+# without re-resolving the heavy stack.
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/Yuxi0048/PipeNetworkCompletion"
+Repository = "https://github.com/Yuxi0048/PipeNetworkCompletion"
+Paper = "https://doi.org/10.22260/ISARC2024/0121"
+
+[tool.setuptools.packages.find]
+include = ["pipe_network_completion*"]
+exclude = ["legacy*", "tests*", "scripts*", "docs*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["legacy", ".conda"]
+
+[tool.ruff.lint]
+# "F" catches real bugs (unused imports, undefined names); "E" catches style.
+# "I" (import sorting) and "B" (bugbear) are skipped because they flag many
+# pre-existing notebook-era patterns left unchanged in this refactor.
+select = ["E", "F", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# scripts/ runs `sys.path.insert(...)` before importing the package so they
+# work both with and without `pip install -e .`.
+"scripts/*.py" = ["E402"]

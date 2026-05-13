@@ -1,0 +1,41 @@
+# Conda / venv
+.conda/
+.venv/
+env/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated replication outputs
+replication_outputs/
+/checkpoint.pt
+graph_map.html
+
+# Large research artifacts live in release assets, not Git history.
+data/**/*.pkl
+data/**/*.csv
+data/**/*.shp
+data/**/*.shx
+data/**/*.dbf
+data/**/*.sbn
+data/**/*.sbx
+data/**/*.cpg
+data/**/*.prj
+data/**/*.xml
+models/checkpoints/*.pt
+
+# Release tooling
+release_assets/
