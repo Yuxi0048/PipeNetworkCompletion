@@ -1,10 +1,10 @@
-"""Bundle large artifacts into a release archive.
+"""Bundle local artifacts into an authorized archive.
 
 Writes `release_assets/pipe-network-artifacts-<version>.<ext>` plus a matching
 `.sha256` sidecar so downstream `download_assets.py` runs can verify integrity.
 
-Excluded from git via the standard build directory pattern; see
-RELEASE.md for the full release-cut procedure.
+Use this only when raw or derived artifact redistribution is allowed by the
+relevant data-provider terms; see RELEASE.md for the release procedure.
 """
 
 from __future__ import annotations
@@ -102,7 +102,7 @@ def write_sha256_sidecar(archive_path: Path) -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Bundle release assets into an archive + sha256 sidecar."
+        description="Bundle authorized artifacts into an archive + sha256 sidecar."
     )
     parser.add_argument(
         "--version",
@@ -133,13 +133,32 @@ def parse_args() -> argparse.Namespace:
         "--format",
         choices=["zip", "tar.gz"],
         default="zip",
-        help="Archive format for the generated release asset.",
+        help="Archive format for the generated artifact archive.",
+    )
+    parser.add_argument(
+        "--confirm-authorized-distribution",
+        action="store_true",
+        help=(
+            "Confirm that the selected artifacts may be shared under the "
+            "relevant data-provider terms."
+        ),
     )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    if not args.confirm_authorized_distribution:
+        print(
+            "Refusing to bundle data artifacts without "
+            "--confirm-authorized-distribution."
+        )
+        print(
+            "Only build artifact archives when redistribution is allowed by "
+            "the relevant data-provider terms."
+        )
+        return 1
+
     if not args.version.startswith("v"):
         print(f"WARN: version '{args.version}' does not start with 'v'.")
 

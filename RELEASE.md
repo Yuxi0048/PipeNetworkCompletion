@@ -9,7 +9,7 @@ The project follows [Semantic Versioning](https://semver.org/):
 | Bump | Trigger |
 | --- | --- |
 | `MAJOR` (`1.0.0` → `2.0.0`) | Breaking change to CLI flags, data layout, or model state-dict format |
-| `MINOR` (`1.0.0` → `1.1.0`) | New checkpoints, new replication targets, additive CLI flags |
+| `MINOR` (`1.0.0` -> `1.1.0`) | New checkpoints, new evaluation targets, additive CLI flags |
 | `PATCH` (`1.0.0` → `1.0.1`) | Docs, lint, dependency updates that do not change results |
 
 Three places must stay in sync:
@@ -31,7 +31,7 @@ pip install -e ".[test]"
 pytest
 ruff check pipe_network_completion scripts process.py tests
 
-# 3. End-to-end replication smoke test
+# 3. End-to-end evaluation smoke test, when authorized artifacts are available
 python scripts/verify_environment.py --load-data
 python scripts/evaluate_checkpoint.py --max-batches 2
 
@@ -47,24 +47,29 @@ git add pyproject.toml pipe_network_completion/__init__.py CITATION.cff CHANGELO
 git commit -m "Release v1.0.0"
 
 # 3. Tag
-git tag -a v1.0.0 -m "v1.0.0 - ISARC 2024 replication"
-git push origin Final
+git tag -a v1.0.0 -m "v1.0.0 - ISARC 2024 source release"
+git push origin main
 git push origin v1.0.0
 
-# 4. Bundle large assets
-python scripts/bundle_release_assets.py --version v1.0.0 --format zip
-
-# 5. Create the GitHub release with notes from CHANGELOG.md
+# 4. Create the GitHub source release with notes from CHANGELOG.md
 gh release create v1.0.0 \
-  --title "v1.0.0 - ISARC 2024 replication" \
-  --notes-file CHANGELOG.md \
-  release_assets/pipe-network-artifacts-v1.0.0.zip \
-  release_assets/pipe-network-artifacts-v1.0.0.zip.sha256
+  --title "v1.0.0 - ISARC 2024 source release" \
+  --notes-file CHANGELOG.md
 ```
 
-`bundle_release_assets.py` writes a SHA-256 sidecar so users can verify
-downloads end to end. Add `--include raw` only if the raw GIS data can be
-redistributed publicly.
+Do not attach raw GIS files, processed graph pickles, model checkpoints, or
+other utility-network artifacts to a public GitHub release unless redistribution
+permission is documented.
+
+Create a private artifact archive only after written redistribution permission
+or an equivalent provider-compliant agreement is in place:
+
+```bash
+python scripts/bundle_release_assets.py --version v1.0.0 --format zip --confirm-authorized-distribution
+```
+
+`bundle_release_assets.py` writes a SHA-256 sidecar so recipients can verify
+downloads end to end.
 
 ## Zenodo Archival (One-Time Setup)
 

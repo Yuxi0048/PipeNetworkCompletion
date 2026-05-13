@@ -44,7 +44,7 @@ def import_version(module_name: str) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Verify the replication environment.")
+    parser = argparse.ArgumentParser(description="Verify the project environment.")
     parser.add_argument(
         "--load-data",
         action="store_true",

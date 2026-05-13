@@ -25,9 +25,7 @@ Refactored by Codex and Claude Code on 2026-05-13.
 ```powershell
 .\scripts\create_env.ps1
 .\.conda\pipe-network-completion\python.exe -m pip install -e .
-.\.conda\pipe-network-completion\python.exe scripts\download_assets.py --version v1.0.0
-.\.conda\pipe-network-completion\python.exe scripts\verify_environment.py --load-data
-.\.conda\pipe-network-completion\python.exe scripts\evaluate_checkpoint.py --max-batches 2
+.\.conda\pipe-network-completion\python.exe scripts\verify_environment.py
 ```
 
 ### macOS / Linux (bash)
@@ -36,9 +34,7 @@ Refactored by Codex and Claude Code on 2026-05-13.
 conda env create -f environment.yml
 conda activate pipe-network-completion
 pip install -e .
-python scripts/download_assets.py --version v1.0.0
-python scripts/verify_environment.py --load-data
-python scripts/evaluate_checkpoint.py --max-batches 2
+python scripts/verify_environment.py
 ```
 
 Editable installation keeps `pipe_network_completion` importable from scripts,
@@ -105,18 +101,18 @@ Each script supports `--help`.
 - [pipe_network_completion/evaluation.py](pipe_network_completion/evaluation.py):
   shared binary classification metrics.
 - [data/](data/): local layout for raw, interim, processed, and experiment data
-  artifacts populated from release assets.
+  artifacts generated from provider-supplied inputs.
 - [models/checkpoints/](models/checkpoints/): saved PyTorch model checkpoints
-  (see [models/README.md](models/README.md) for the naming scheme).
+  for local evaluation; checkpoint files are not distributed in this repository.
 - [results/metrics/](results/metrics/): recorded metrics from previous model
   runs.
 
 ## Source Traceability
 
-The `main` branch is the maintained research code package. Notebook-era files
-and earlier repository layouts are preserved in archived remote branches, so
-readers can inspect the historical code without adding those files to the
-current runnable tree.
+The `main` branch is the maintained research code package. Notebook-era source
+code and earlier repository layouts are preserved in sanitized archived remote
+branches, so readers can inspect the historical code without adding data files
+to the current runnable tree.
 
 ```bash
 git fetch --all --tags
@@ -133,6 +129,13 @@ git switch main
 ```
 
 ## Data
+
+The source code is public. Raw GIS files, processed graph pickles, model
+checkpoints, and other artifacts that can reconstruct the utility network are
+not redistributed in this repository. Users should obtain source GIS data
+directly from the relevant public data providers and follow their terms of use.
+The authors do not redistribute raw or derived data artifacts unless separate
+written permission is obtained from the relevant data providers.
 
 Prepared artifacts:
 
@@ -155,18 +158,21 @@ Raw GIS artifacts:
 - `data/raw/gis/roads/Roads_ExportFeatures.shp`
 - `data/raw/mh_road/MH_Road.pkl`
 
-Data and checkpoint artifacts are provided through the release bundle. The
-download helper fetches the archive, verifies the SHA-256 sidecar, and extracts
-the prepared `data/`, `models/`, and `results/` files into the working tree:
+Public GitHub releases should not attach these artifacts unless redistribution
+permission is documented.
 
-```bash
-python scripts/download_assets.py --version v1.0.0
-```
+## Running With Restricted Data
 
-The standard release bundle contains prepared graphs, interim pickles,
-split-shapefile exports, experiment variants, model checkpoints, and metrics.
-Raw GIS inputs are managed as separate project data when distribution terms
-require it.
+Readers can use the repository at two levels:
+
+1. **Code and environment check**: clone the repository, create the environment,
+   install the package, and run `scripts/verify_environment.py`. This path does
+   not require raw GIS files or model artifacts.
+2. **Provider-data workflow**: obtain GIS data directly from the relevant public
+   data providers, follow their terms of use, place the files in the documented
+   `data/raw/` layout, then run `process.py` and `scripts/build_graphs.py`.
+   Model evaluation requires locally generated graph artifacts and a checkpoint
+   the reader is permitted to use.
 
 ## Tests
 
@@ -178,24 +184,16 @@ pip install -e ".[test]"
 pytest
 ```
 
-Artifact-backed validation is handled by
+Artifact-backed validation for local provider data is handled by
 `scripts/verify_environment.py --load-data`.
 
 ## Releases
 
-Tagged releases are published at
+Tagged source releases are published at
 [github.com/Yuxi0048/PipeNetworkCompletion/releases](https://github.com/Yuxi0048/PipeNetworkCompletion/releases).
-Each release bundles prepared artifacts into a
-`pipe-network-artifacts-<version>.zip` asset with a SHA-256 sidecar. Fetch them
-with:
-
-```bash
-python scripts/download_assets.py --version v1.0.0
-```
-
-The helper uses the [GitHub CLI](https://cli.github.com/) and prints the
-equivalent `curl` command for manual downloads. The release procedure is
-documented in [RELEASE.md](RELEASE.md), and the version history lives in
+Public releases contain source code and documentation. Data archives are not
+provided through this repository. The release procedure is documented in
+[RELEASE.md](RELEASE.md), and the version history lives in
 [CHANGELOG.md](CHANGELOG.md).
 
 ## Run Notes
@@ -213,7 +211,9 @@ graph artifacts.
 This project appreciates [Urban Utilities](https://www.arcgis.com/home/item.html?id=36fdac21178a4364a04f9516aa0703e5%2F1000)
 for public access to high-quality utility network data, and
 [Brisbane City Council Open Data](https://www.brisbane.qld.gov.au/business/tools-and-resources/open-data)
-for public geospatial context used alongside those utility assets.
+for public geospatial context used alongside those utility assets. Users are
+responsible for following provider terms when accessing or redistributing raw or
+derived data.
 
 ## Citation
 

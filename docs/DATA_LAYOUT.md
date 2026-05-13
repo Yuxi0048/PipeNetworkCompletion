@@ -1,8 +1,8 @@
 # Data Layout
 
 The repository organizes artifacts by lifecycle. Git tracks the folder layout,
-documentation, and small metadata; large data/checkpoint artifacts are
-distributed through release assets.
+documentation, and small metadata; raw GIS files, processed graph pickles, and
+model checkpoints are not redistributed in the public repository.
 
 ```text
 data/
@@ -41,16 +41,13 @@ results/
 Maintained code should read from these paths through
 `pipe_network_completion.paths` instead of hard-coding file locations.
 
-## Artifact Delivery
+## Artifact Access
 
-On a fresh clone, populate the large files with:
+Users should obtain source GIS data directly from the relevant public data
+providers and follow their terms of use. The authors do not redistribute raw or
+derived data artifacts unless separate written permission is obtained from the
+relevant data providers.
 
-```bash
-python scripts/download_assets.py --version v1.0.0
-```
-
-The standard release bundle includes prepared graph pickles, interim pickles,
-split-shapefile exports, experiment variants, model checkpoints, and metrics.
-Raw GIS files may be omitted from public release assets if licensing or data
-ownership requires separate distribution.
+Public GitHub releases should not attach raw or derived utility-network data
+unless redistribution permission is documented.
 

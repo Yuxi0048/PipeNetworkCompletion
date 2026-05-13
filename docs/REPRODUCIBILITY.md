@@ -1,4 +1,4 @@
-# Reproducibility
+# Environment and Evaluation
 
 ## Create The Environment
 
@@ -28,21 +28,36 @@ Equivalent explicit Windows command (no helper script):
   -f environment.yml
 ```
 
+## Data Availability
+
+The public repository does not redistribute raw GIS files, processed graph
+pickles, model checkpoints, or other artifacts that can reconstruct the utility
+network. Users should obtain source GIS data directly from the relevant public
+data providers and follow their terms of use. The authors do not redistribute
+raw or derived data artifacts unless separate written permission is obtained
+from the relevant data providers.
+
+## Reader Workflows
+
+Readers can use the project in two ways:
+
+1. **Code and environment check**: create the environment, install the package,
+   and run `python scripts/verify_environment.py`.
+2. **Provider-data workflow**: obtain GIS data directly from the relevant public
+   data providers, follow their terms of use, place the files in `data/raw/`,
+   then run `python process.py` and `python scripts/build_graphs.py`. Model
+   evaluation requires locally generated graph artifacts and a checkpoint the
+   reader is permitted to use.
+
 ## Verify Artifacts
-
-Download the release asset first on a fresh clone:
-
-```bash
-python scripts/download_assets.py --version v1.0.0
-```
 
 ```bash
 python scripts/verify_environment.py --load-data
 ```
 
 This checks the package stack, prepared graph pickles, model checkpoint, and
-metrics CSV used by the default replication command. Without downloaded
-artifacts, run `python scripts/verify_environment.py` to check only the Python
+metrics CSV used by the default evaluation command. Without downloaded
+artifacts, run `python scripts/verify_environment.py` to check the Python
 environment and package imports.
 
 ## Rebuild From Raw (Optional)
@@ -60,7 +75,7 @@ python scripts/build_graphs.py
 `build_graphs.py` then assembles per-split `HeteroData` pickles into
 `data/processed/graphs/`.
 
-## Smoke Test Replication
+## Smoke Test Evaluation
 
 ```bash
 python scripts/evaluate_checkpoint.py --max-batches 2
@@ -71,7 +86,7 @@ data can run end to end without waiting for a full split evaluation. Partial
 smoke samples may report `nan` for AUC when the sampled labels contain only one
 class; the full split command below performs the actual metrics comparison.
 
-## Full Test-Split Replication
+## Full Test-Split Evaluation
 
 ```bash
 python scripts/evaluate_checkpoint.py \

@@ -1,12 +1,12 @@
-"""Download and extract release-asset archives for replication.
+"""Download and extract authorized artifact archives.
 
-Use this on a slim clone (or after `git clone` if the maintainer publishes
-artifacts via GitHub release assets instead of tracking them in git):
+Use this after an authorized artifact archive has been shared through a GitHub
+release or an equivalent private channel:
 
     python scripts/download_assets.py --version v1.0.0
 
-Requires the GitHub CLI (`gh`); if it is not installed, the script prints
-the equivalent `curl` command so it remains usable in offline setups.
+Requires the GitHub CLI (`gh`) for release downloads; if it is not installed,
+the script prints the equivalent `curl` command.
 """
 
 from __future__ import annotations
@@ -120,7 +120,7 @@ def gh_download(version: str, repo: str, target_dir: Path, pattern: str) -> None
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Fetch the release-asset archive for a tagged version."
+        description="Fetch an authorized artifact archive for a tagged version."
     )
     parser.add_argument(
         "--version",
@@ -153,7 +153,7 @@ def parse_args() -> argparse.Namespace:
         "--format",
         choices=["zip", "tar.gz"],
         default="zip",
-        help="Release asset format to download.",
+        help="Artifact archive format to download.",
     )
     return parser.parse_args()
 

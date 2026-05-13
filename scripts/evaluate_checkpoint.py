@@ -214,13 +214,13 @@ def main() -> int:
     print(f"Max metric delta: {delta:.6f}")
     if delta > args.tolerance:
         print(
-            "Replication check failed. The original notebook used sampled "
+            "Checkpoint evaluation check failed. The original notebook used sampled "
             "neighborhoods, so exact metrics can vary unless the full software "
             "stack and random state match."
         )
         return 2
 
-    print("Replication check passed.")
+    print("Checkpoint evaluation check passed.")
     return 0
 
 

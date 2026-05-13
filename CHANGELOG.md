@@ -6,9 +6,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+- Public documentation now states that raw GIS files, processed graph pickles,
+  model checkpoints, and derived utility-network artifacts are not
+  redistributed through the public repository.
+- `scripts/bundle_release_assets.py` now requires
+  `--confirm-authorized-distribution` before creating artifact archives.
+- Release notes now describe public source releases separately from authorized
+  artifact distribution.
+
 ## [1.0.0] - 2026-05-13
 
-Formal replication release matching the ISARC 2024 paper:
+Formal source release matching the ISARC 2024 paper:
 *Underground Utility Network Completion based on Spatial Contextual
 Information of Ground Facilities and Utility Anchor Points using Graph Neural
 Networks* (Zhang & Cai, [DOI:10.22260/ISARC2024/0121](https://doi.org/10.22260/ISARC2024/0121)).
@@ -17,15 +25,15 @@ Networks* (Zhang & Cai, [DOI:10.22260/ISARC2024/0121](https://doi.org/10.22260/I
 - Installable Python package `pipe_network_completion` via `pyproject.toml`.
 - `scripts/build_graphs.py` — assembles per-split `HeteroData` graphs from
   the interim preprocessed pickles, completing the
-  `raw → interim → processed → metrics` pipeline.
+  `raw -> interim -> processed -> metrics` pipeline.
 - `models/README.md` — documents the `model<arch>_hiddensize_<H>_drop_<DD>.pt`
   naming schema and architecture-code table.
 - `tests/` — pytest checks for imports, paths, model utilities, and
   checkpoint/metrics inventory consistency.
-- `scripts/bundle_release_assets.py` — packages checkpoints, prepared graphs,
-  and metrics into a release tarball for upload.
-- `scripts/download_assets.py` — fetches release assets via the GitHub CLI
-  for users who clone a slim source tree.
+- `scripts/bundle_release_assets.py` — packages authorized checkpoints,
+  prepared graphs, and metrics into an archive.
+- `scripts/download_assets.py` — fetches authorized artifact archives via the
+  GitHub CLI for users who clone a slim source tree.
 - `.gitignore` rules and folder placeholders keep large data/checkpoint
   artifacts out of Git history.
 - `RELEASE.md` — maintainer playbook for cutting a tagged release.

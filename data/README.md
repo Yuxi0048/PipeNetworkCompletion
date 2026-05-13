@@ -1,15 +1,10 @@
 # Data Artifacts
 
-This directory is the expected local layout for replication data. Git tracks the
-folder structure only; large pickles, shapefiles, CSV data exports, and model
-inputs are distributed through release assets or a separate data archive.
+This directory defines the expected local artifact layout. Git tracks the folder
+structure only; raw GIS files, processed pickles, graph data, and model inputs
+are not redistributed in this repository.
 
-Populate the artifacts after cloning:
-
-```bash
-python scripts/download_assets.py --version v1.0.0
-```
-
-Raw GIS files may require separate permission before redistribution. Prepared
-graphs under `data/processed/graphs/` are enough for the default replication
-command.
+To run artifact-backed evaluation commands, obtain the source GIS data from the
+relevant providers and follow their terms of use. The authors do not
+redistribute raw or derived data artifacts unless separate written permission is
+obtained from the relevant data providers.
