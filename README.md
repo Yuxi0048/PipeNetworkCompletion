@@ -13,8 +13,8 @@ Spatial Contextual Information of Ground Facilities and Utility Anchor Points
 using Graph Neural Networks**.
 
 The repository includes an installable Python package, command-line evaluation
-scripts, environment checks, tests, documentation, release-based data artifacts,
-and branch-based source traceability to the notebook-era repository state.
+scripts, environment checks, tests, documentation, data-layout guidance, and
+branch-based source traceability to the notebook-era repository state.
 
 Refactored by Codex and Claude Code on 2026-05-13.
 
@@ -154,15 +154,26 @@ directly from the relevant public data providers and follow their terms of use.
 The authors do not redistribute raw or derived data artifacts unless separate
 written permission is obtained from the relevant data providers.
 
-Required local inputs for `process.py`:
+### Input Files For `process.py`
 
-| Source | Local folder | Required files |
-| --- | --- | --- |
-| Urban Utilities GIS data | `data/raw/gis/sewer/` | `SewerManholes_ExportFeatures.shp`, `SewerGravityMa_ExportFeature1.shp`, `SewerGravityMa_ExportFeature2.shp`, `SewersqlSewerP_ExportFeature.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
-| Brisbane City Council Open Data | `data/raw/gis/roads/` | `Roads_ExportFeatures.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
-| Locally generated near table | `data/raw/mh_road/` | `MH_Road.pkl`, generated from the manhole and road layers as a nearest-feature table with `OBJECTID`, `NEAR_FID`, `NEAR_POS`, `NEAR_DIST`, and `SIDE` fields |
+Place each shapefile bundle in the folder below. Keep every `.shp` file with
+its matching sidecars, including `.dbf`, `.shx`, `.prj`, and any other files
+exported with the same base name.
 
-Prepared artifacts:
+| Local path | Dataset | Geometry | Role in the workflow |
+| --- | --- | --- | --- |
+| `data/raw/gis/sewer/SewerManholes_ExportFeatures.shp` | Urban Utilities sewer manholes | Point | Main manhole/anchor-point layer. Combined with `MH_Road.pkl` to build `MH_proc.pkl`. |
+| `data/raw/gis/sewer/SewerGravityMa_ExportFeature1.shp` | Urban Utilities sewer gravity main - trunk | Line | Trunk gravity-main segments. Combined with `SewerGravityMa_ExportFeature2.shp` to build `Line_proc.pkl`. |
+| `data/raw/gis/sewer/SewerGravityMa_ExportFeature2.shp` | Urban Utilities sewer gravity main | Line | Main gravity sewer segments. Combined with `SewerGravityMa_ExportFeature1.shp` to build `Line_proc.pkl`. |
+| `data/raw/gis/sewer/SewersqlSewerP_ExportFeature.shp` | Urban Utilities sewer pump assets | Point | Loaded by `process.py` as pump point assets. In the current preprocessing path, pump rows without the manhole-road near-table fields are filtered before `MH_proc.pkl` is written. |
+| `data/raw/gis/roads/Roads_ExportFeatures.shp` | Brisbane City Council road hierarchy | Line | Road context layer used to build road nodes and road-road relationships. |
+| `data/raw/mh_road/MH_Road.pkl` | Locally generated manhole-road near table | Table | Links manholes to nearby roads. Expected fields are `OBJECTID`, `NEAR_FID`, `NEAR_POS`, `NEAR_DIST`, and `SIDE`. |
+
+If pump assets should be represented as graph nodes, revise `process.py` and
+regenerate the derived artifacts; otherwise the table above documents the
+current notebook-compatible preprocessing path.
+
+Generated local artifacts:
 
 - `data/interim/MH_proc.pkl`
 - `data/interim/Road_proc.pkl`
@@ -173,15 +184,6 @@ Prepared artifacts:
 - `data/processed/graphs/train_data.pkl`
 - `data/processed/graphs/val_data.pkl`
 - `data/processed/graphs/test_data.pkl`
-
-Raw GIS artifacts:
-
-- `data/raw/gis/sewer/SewerManholes_ExportFeatures.shp`
-- `data/raw/gis/sewer/SewerGravityMa_ExportFeature2.shp`
-- `data/raw/gis/sewer/SewerGravityMa_ExportFeature1.shp`
-- `data/raw/gis/sewer/SewersqlSewerP_ExportFeature.shp`
-- `data/raw/gis/roads/Roads_ExportFeatures.shp`
-- `data/raw/mh_road/MH_Road.pkl`
 
 Public GitHub releases should not attach these artifacts unless redistribution
 permission is documented.

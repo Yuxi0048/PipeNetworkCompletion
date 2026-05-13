@@ -43,13 +43,18 @@ Maintained code should read from these paths through
 
 ## Required Local Inputs
 
-`process.py` expects the raw inputs in this layout:
+`process.py` expects the raw inputs in this layout. Keep each `.shp` file with
+its matching sidecars, including `.dbf`, `.shx`, `.prj`, and any other files
+exported with the same base name.
 
-| Source | Local folder | Required files |
-| --- | --- | --- |
-| Urban Utilities GIS data | `data/raw/gis/sewer/` | `SewerManholes_ExportFeatures.shp`, `SewerGravityMa_ExportFeature1.shp`, `SewerGravityMa_ExportFeature2.shp`, `SewersqlSewerP_ExportFeature.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
-| Brisbane City Council Open Data | `data/raw/gis/roads/` | `Roads_ExportFeatures.shp`, plus the matching shapefile sidecars such as `.dbf`, `.shx`, and `.prj` |
-| Locally generated near table | `data/raw/mh_road/` | `MH_Road.pkl`, generated from the manhole and road layers as a nearest-feature table with `OBJECTID`, `NEAR_FID`, `NEAR_POS`, `NEAR_DIST`, and `SIDE` fields |
+| Local path | Dataset | Geometry | Role in the workflow |
+| --- | --- | --- | --- |
+| `data/raw/gis/sewer/SewerManholes_ExportFeatures.shp` | Urban Utilities sewer manholes | Point | Main manhole/anchor-point layer. Combined with `MH_Road.pkl` to build `MH_proc.pkl`. |
+| `data/raw/gis/sewer/SewerGravityMa_ExportFeature1.shp` | Urban Utilities sewer gravity main - trunk | Line | Trunk gravity-main segments. Combined with `SewerGravityMa_ExportFeature2.shp` to build `Line_proc.pkl`. |
+| `data/raw/gis/sewer/SewerGravityMa_ExportFeature2.shp` | Urban Utilities sewer gravity main | Line | Main gravity sewer segments. Combined with `SewerGravityMa_ExportFeature1.shp` to build `Line_proc.pkl`. |
+| `data/raw/gis/sewer/SewersqlSewerP_ExportFeature.shp` | Urban Utilities sewer pump assets | Point | Loaded by `process.py` as pump point assets. In the current preprocessing path, pump rows without the manhole-road near-table fields are filtered before `MH_proc.pkl` is written. |
+| `data/raw/gis/roads/Roads_ExportFeatures.shp` | Brisbane City Council road hierarchy | Line | Road context layer used to build road nodes and road-road relationships. |
+| `data/raw/mh_road/MH_Road.pkl` | Locally generated manhole-road near table | Table | Links manholes to nearby roads. Expected fields are `OBJECTID`, `NEAR_FID`, `NEAR_POS`, `NEAR_DIST`, and `SIDE`. |
 
 ## Artifact Access
 
