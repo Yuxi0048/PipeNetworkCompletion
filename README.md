@@ -18,6 +18,14 @@ and branch-based source traceability to the notebook-era repository state.
 
 Refactored by Codex and Claude Code on 2026-05-13.
 
+> [!CAUTION]
+> Data and model checkpoints are not distributed in this repository. Raw GIS
+> files, processed graph pickles, model checkpoints, and derived artifacts that
+> can reconstruct the utility network are excluded. Users must obtain source
+> data from the original public providers and follow their terms; the authors
+> cannot redistribute raw or derived data without separate written permission
+> from the providers.
+
 ## Quick Start
 
 ### Windows (PowerShell)
