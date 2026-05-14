@@ -16,7 +16,8 @@ The repository includes an installable Python package, command-line evaluation
 scripts, environment checks, tests, documentation, data-layout guidance, and
 branch-based source traceability to the notebook-era repository state.
 
-Refactored by Codex and Claude Code on 2026-05-13.
+The initial version of this repository was published on December 26, 2023, and
+the codebase was refactored by Codex and Claude Code on May 13, 2026.
 
 > [!CAUTION]
 > Data and model checkpoints are not distributed in this repository. Raw GIS
