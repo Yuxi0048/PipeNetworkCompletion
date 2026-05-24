@@ -19,13 +19,19 @@ branch-based source traceability to the notebook-era repository state.
 The initial version of this repository was published on December 26, 2023, and
 the codebase was refactored by Codex and Claude Code on May 13, 2026.
 
-> [!CAUTION]
-> Data and model checkpoints are not distributed in this repository. Raw GIS
-> files, processed graph pickles, model checkpoints, and derived artifacts that
-> can reconstruct the utility network are excluded. Users must obtain source
-> data from the original public providers and follow their terms; the authors
-> cannot redistribute raw or derived data without separate written permission
-> from the providers.
+> [!NOTE]
+> The raw GIS inputs, interim pickles, and processed graph artifacts used in
+> the referenced ISARC 2024 study are included under `data/` to support
+> reproduction. Files exceeding GitHub's 50 MB warning threshold
+> (`data/experiments/data_MH_Road_attr.pkl`,
+> `data/processed/split_shapefiles/train.dbf`) are attached to GitHub Releases
+> instead of tracked in Git history; download them from the matching release
+> and place them at the documented paths. Model checkpoints are still not
+> distributed. Subsequent data work added after 2026-05-13 (the context and
+> buildings extension under `data/processed/aois/`,
+> `data/processed/context/`, `data/raw/context/`) is excluded from this
+> repository. Users remain responsible for following the original providers'
+> terms of use when working with or further redistributing this data.
 
 ## Quick Start
 
@@ -148,12 +154,16 @@ git switch main
 
 ## Data
 
-The source code is public. Raw GIS files, processed graph pickles, model
-checkpoints, and other artifacts that can reconstruct the utility network are
-not redistributed in this repository. Users should obtain source GIS data
-directly from the relevant public data providers and follow their terms of use.
-The authors do not redistribute raw or derived data artifacts unless separate
-written permission is obtained from the relevant data providers.
+The source code is public. The raw GIS inputs, interim pickles, and processed
+graph artifacts used in the ISARC 2024 study are included under `data/` for
+reproduction; the two files over 50 MB
+(`data/experiments/data_MH_Road_attr.pkl` and
+`data/processed/split_shapefiles/train.dbf`) are attached to GitHub Releases
+rather than tracked in Git. Model checkpoints remain undistributed. Data work
+added to the project after 2026-05-13 (context, buildings, and DEM extensions)
+is not included here. Users remain responsible for following the original
+providers' terms of use when working with or further redistributing any of
+this data.
 
 ### Input Files For `process.py`
 
@@ -186,8 +196,8 @@ Generated local artifacts:
 - `data/processed/graphs/val_data.pkl`
 - `data/processed/graphs/test_data.pkl`
 
-Public GitHub releases should not attach these artifacts unless redistribution
-permission is documented.
+Files over GitHub's 50 MB warning threshold are attached to releases rather
+than committed to Git history (see the note above).
 
 ## Running With Restricted Data
 
