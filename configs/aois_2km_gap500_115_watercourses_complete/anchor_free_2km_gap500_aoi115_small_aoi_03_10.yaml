@@ -1,0 +1,105 @@
+{
+  "aoi": {
+    "aoi_id": "small_aoi_03_10",
+    "source": "data/processed/aois/anchor_free_2km_gap500_115",
+    "split": "train",
+    "watercourse_context_complete": true
+  },
+  "data": {
+    "building_points_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/building_points.geojson",
+    "buildings_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/building_areas.geojson",
+    "built_up_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/built_up.geojson",
+    "dem_path": "data/processed/context/study_area/brisbane_dem_h_1sec_epsg28356.tif",
+    "roads_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/roads.geojson",
+    "sources_sinks_path": null,
+    "utility_truth_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/utility_truth_gravity_mains.geojson",
+    "watercourse_corridor_centrelines_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/watercourse_corridor_centrelines.geojson",
+    "watercourse_corridors_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/watercourse_corridors.geojson",
+    "watercourse_drainage_lines_path": "data/processed/aois/anchor_free_2km_gap500_115/small_aoi_03_10/watercourse_drainage_lines.geojson"
+  },
+  "decoder": {
+    "lambda_engineering": 1.0,
+    "lambda_length": 0.001,
+    "loop_budget_fraction": 0.05,
+    "threshold": 0.5,
+    "type": "threshold"
+  },
+  "evaluation": {
+    "building_service_buffer_m": 50,
+    "extra_label_buffers_m": [
+      5
+    ],
+    "representability_buffers_m": [
+      5,
+      10,
+      20,
+      30,
+      50
+    ],
+    "representability_sample_spacing_m": 100,
+    "threshold_grid": [
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7
+    ]
+  },
+  "experiment_name": "anchor_free_2km_gap500_aoi115_small_aoi_03_10",
+  "graph": {
+    "building_buffer_m": 50,
+    "building_point_buffer_m": 50,
+    "built_up_buffer_m": 50,
+    "candidate_graph_type": "hybrid",
+    "dem_max_samples_per_edge": 64,
+    "dem_sample_spacing_m": 30,
+    "demand_cluster_grid_m": 150,
+    "demand_knn_k": 3,
+    "demand_knn_max_distance_m": 500,
+    "include_building_access": true,
+    "include_demand_knn": true,
+    "include_demand_mst": true,
+    "include_road_backbone": true,
+    "label_buffer_m": 10,
+    "label_overlap_threshold": 0.25,
+    "nearest_road_max_distance_m": 300,
+    "road_class_columns": [
+      "road_class",
+      "OVL2_CAT",
+      "CLASS",
+      "highway"
+    ],
+    "road_density_buffer_m": 100,
+    "snap_tolerance_m": 1.0,
+    "target_crs": "EPSG:28356",
+    "use_building_points": true,
+    "use_buildings": true,
+    "use_built_up": true,
+    "use_dem": true,
+    "use_watercourses": true,
+    "watercourse_buffer_m": 100.0,
+    "watercourse_context_complete": true
+  },
+  "mode": "anchor_free",
+  "model": {
+    "class_weight": "balanced",
+    "device": "auto",
+    "dropout": 0.1,
+    "epochs": 100,
+    "gat_heads": 1,
+    "gnn_layer_type": "sage",
+    "hidden_dim": 64,
+    "include_node_coords": true,
+    "lr": 0.001,
+    "num_layers": 3,
+    "type": "gnn"
+  },
+  "seed": 42,
+  "split": {
+    "strategy": "buffer_invariant",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "task_type": "sewer"
+}

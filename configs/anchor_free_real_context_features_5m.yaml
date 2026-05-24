@@ -1,0 +1,54 @@
+# Workstream: Codex
+experiment_name: anchor_free_real_context_features_5m
+mode: anchor_free_feature_preparation
+task_type: sewer
+seed: 42
+
+data:
+  roads_path: data/raw/gis/roads/Roads_ExportFeatures.shp
+  buildings_path: data/processed/context/study_area/building_areas_study_area.geojson
+  building_points_path: data/processed/context/study_area/building_points_study_area.geojson
+  built_up_path: data/processed/context/study_area/build_up_areas_study_area.geojson
+  utility_truth_path: [data/raw/gis/sewer/SewerGravityMa_ExportFeature1.shp, data/raw/gis/sewer/SewerGravityMa_ExportFeature2.shp]
+  dem_path: data/processed/context/study_area/brisbane_dem_h_1sec_epsg28356.tif
+  sources_sinks_path:
+
+graph:
+  target_crs: EPSG:28356
+  snap_tolerance_m: 1.0
+  road_class_columns: [OVL_CAT, OVL2_CAT, ROUTE_TYPE]
+  building_buffer_m: 50
+  building_point_buffer_m: 50
+  built_up_buffer_m: 50
+  road_density_buffer_m: 100
+  dem_sample_spacing_m: 30
+  dem_max_samples_per_edge: 64
+  label_buffer_m: 5
+  training_ready_label_buffers_m: [5]
+  label_overlap_threshold: 0.25
+  use_buildings: true
+  use_building_points: true
+  use_built_up: true
+  use_dem: true
+
+model:
+  type: random_forest
+  hidden_dim: 64
+  num_layers: 3
+  dropout: 0.1
+  lr: 0.001
+  epochs: 100
+  class_weight: balanced
+  device: auto
+
+decoder:
+  type: threshold
+  threshold: 0.5
+  lambda_length: 0.001
+  lambda_engineering: 1.0
+  loop_budget_fraction: 0.05
+
+evaluation:
+  threshold_grid: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
+  building_service_buffer_m: 50
+  extra_label_buffers_m: [10]

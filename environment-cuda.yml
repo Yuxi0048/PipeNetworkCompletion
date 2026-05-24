@@ -1,0 +1,46 @@
+# GPU/CUDA environment for training the anchor-free road-edge GNN.
+#
+# Mirrors environment.yml but swaps cpuonly -> pytorch-cuda=12.1 and the
+# PyTorch Geometric wheel index from +cpu to +cu121. PyTorch / torch_geometric
+# versions are pinned to match the original ISARC environment so saved
+# checkpoints remain loadable.
+#
+# Install:
+#   .\scripts\create_env_cuda.ps1            # Windows (creates .conda/pipe-network-completion-cuda)
+#   conda env create -f environment-cuda.yml # Linux/macOS (creates env named pipe-network-completion-cuda)
+#
+# Verify GPU:
+#   python scripts/verify_environment_cuda.py
+#
+# Workstream: Claude + Codex merge
+name: pipe-network-completion-cuda
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy=1.25.2
+  - pandas=1.5.3
+  - scipy=1.11.4
+  - scikit-learn=1.2.2
+  - pytorch=2.1.0
+  - pytorch-cuda=12.1
+  - geopandas=0.13.2
+  - shapely=2.0.*
+  - pyproj
+  - fiona
+  - folium
+  - matplotlib
+  - seaborn
+  - tqdm=4.66.*
+  - ipykernel
+  - pip:
+      - --find-links https://data.pyg.org/whl/torch-2.1.0+cu121.html
+      - torch_scatter
+      - torch_sparse
+      - torch_cluster
+      - torch_spline_conv
+      - torch_geometric==2.5.3
+      - captum==0.7.0

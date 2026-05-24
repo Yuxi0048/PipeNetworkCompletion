@@ -38,3 +38,7 @@ data/processed/split_shapefiles/train.dbf
 
 # Release tooling
 release_assets/
+
+# Run artifacts from anchor-free development
+outputs/
+anchor_free_test_outputs/
