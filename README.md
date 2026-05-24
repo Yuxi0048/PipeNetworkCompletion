@@ -192,19 +192,6 @@ Generated local artifacts:
 Files over GitHub's 50 MB warning threshold are attached to releases rather
 than committed to Git history (see the note above).
 
-## Running With Restricted Data
-
-Readers can use the repository at two levels:
-
-1. **Code and environment check**: clone the repository, create the environment,
-   install the package, and run `scripts/verify_environment.py`. This path does
-   not require raw GIS files or model artifacts.
-2. **Provider-data workflow**: obtain GIS data directly from the relevant public
-   data providers, follow their terms of use, place the files in the documented
-   `data/raw/` layout, then run `process.py` and `scripts/build_graphs.py`.
-   Model evaluation requires locally generated graph artifacts and a checkpoint
-   the reader is permitted to use.
-
 ## Tests
 
 The pytest suite checks imports, path constants, and the checkpoint/metrics
