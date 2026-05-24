@@ -19,16 +19,6 @@ branch-based source traceability to the notebook-era repository state.
 The initial version of this repository was published on December 26, 2023, and
 the codebase was refactored by Codex and Claude Code on May 13, 2026.
 
-> [!NOTE]
-> The raw GIS inputs, interim pickles, and processed graph artifacts used in
-> the referenced ISARC 2024 study are included under `data/` to support
-> reproduction. Files exceeding GitHub's 50 MB warning threshold
-> (`data/experiments/data_MH_Road_attr.pkl`,
-> `data/processed/split_shapefiles/train.dbf`) are attached to GitHub Releases
-> instead of tracked in Git history; download them from the matching release
-> and place them at the documented paths. The trained PyTorch checkpoints
-> under `models/checkpoints/` are included in the repository.
-
 ## Quick Start
 
 ### Windows (PowerShell)
