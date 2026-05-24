@@ -29,10 +29,12 @@ them from the matching GitHub Release and place them at these paths:
 
 ## Not included
 
-- Model checkpoints (`models/checkpoints/*.pt`).
 - Data work added to the project after 2026-05-13: the context, buildings,
   and DEM extension layers under `processed/aois/`, `processed/context/`,
   and `raw/context/`.
+
+Trained model checkpoints used in the study are tracked separately in
+[`models/checkpoints/`](../models/checkpoints/).
 
 Users are responsible for following the original providers' terms of use when
 working with or further redistributing any of this data.

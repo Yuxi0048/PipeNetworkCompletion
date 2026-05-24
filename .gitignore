@@ -36,7 +36,5 @@ data/raw/context/
 data/experiments/data_MH_Road_attr.pkl
 data/processed/split_shapefiles/train.dbf
 
-models/checkpoints/*.pt
-
 # Release tooling
 release_assets/

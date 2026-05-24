@@ -1,9 +1,8 @@
 # Model Checkpoints
 
 Saved PyTorch checkpoints from the original notebook runs. Checkpoints are
-distributed through release assets, not tracked in Git. The evaluation CLI
-reads them from `models/checkpoints/` after `scripts/download_assets.py`
-extracts the artifact bundle.
+tracked directly in this repository under `models/checkpoints/`; the
+evaluation CLI reads them from that directory after a clone.
 
 ## Filename Schema
 
@@ -53,5 +52,5 @@ Several files (e.g. `model22_hiddensize_32_drop_00.pt` through
 behavior but not the saved weight tensors for some sweeps. Keep those files so
 the metrics CSV rows continue to resolve.
 
-If a checkpoint is ever retired, append a deprecation note here and update the
-release bundle.
+If a checkpoint is ever retired, append a deprecation note here and remove the
+file from `models/checkpoints/`.
