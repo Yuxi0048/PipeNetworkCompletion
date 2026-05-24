@@ -27,12 +27,7 @@ the codebase was refactored by Codex and Claude Code on May 13, 2026.
 > `data/processed/split_shapefiles/train.dbf`) are attached to GitHub Releases
 > instead of tracked in Git history; download them from the matching release
 > and place them at the documented paths. The trained PyTorch checkpoints
-> under `models/checkpoints/` are included in the repository. Subsequent
-> data work added after 2026-05-13 (the context and
-> buildings extension under `data/processed/aois/`,
-> `data/processed/context/`, `data/raw/context/`) is excluded from this
-> repository. Users remain responsible for following the original providers'
-> terms of use when working with or further redistributing this data.
+> under `models/checkpoints/` are included in the repository.
 
 ## Quick Start
 
@@ -161,11 +156,7 @@ reproduction; the two files over 50 MB
 (`data/experiments/data_MH_Road_attr.pkl` and
 `data/processed/split_shapefiles/train.dbf`) are attached to GitHub Releases
 rather than tracked in Git. The trained PyTorch checkpoints under
-`models/checkpoints/` are included in this repository. Data work
-added to the project after 2026-05-13 (context, buildings, and DEM extensions)
-is not included here. Users remain responsible for following the original
-providers' terms of use when working with or further redistributing any of
-this data.
+`models/checkpoints/` are included in this repository.
 
 ### Input Files For `process.py`
 

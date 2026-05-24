@@ -55,21 +55,23 @@ git push origin v1.0.0
 gh release create v1.0.0 \
   --title "v1.0.0 - ISARC 2024 source release" \
   --notes-file CHANGELOG.md
+
+# 5. Attach the two oversized data files as release assets
+gh release upload v1.0.0 \
+  data/experiments/data_MH_Road_attr.pkl \
+  data/processed/split_shapefiles/train.dbf
 ```
 
-Do not attach raw GIS files, processed graph pickles, model checkpoints, or
-other utility-network artifacts to a public GitHub release unless redistribution
-permission is documented.
+The two files attached in step 5 exceed GitHub's 50 MB warning threshold and
+are distributed through GitHub Releases rather than tracked in Git history
+(see [README.md](README.md) and [data/README.md](data/README.md)).
 
-Create a private artifact archive only after written redistribution permission
-or an equivalent provider-compliant agreement is in place:
+Do NOT attach model checkpoints under `models/checkpoints/` — these are
+tracked directly in the repository.
 
-```bash
-python scripts/bundle_release_assets.py --version v1.0.0 --format zip --confirm-authorized-distribution
-```
-
-`bundle_release_assets.py` writes a SHA-256 sidecar so recipients can verify
-downloads end to end.
+For convenience, [scripts/update_release_assets.ps1](scripts/update_release_assets.ps1)
+wraps step 5 (and re-uploads after the files change) using
+`gh release upload --clobber`.
 
 ## Zenodo Archival (One-Time Setup)
 
