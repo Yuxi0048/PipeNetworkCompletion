@@ -12,6 +12,9 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .ipynb_checkpoints/
+.tmp/
+.pytest_tmp_anchor_features/
+pytest_tmp_codex_*/
 
 # Editor / OS
 .idea/
@@ -24,18 +27,32 @@ replication_outputs/
 /checkpoint.pt
 graph_map.html
 
-# Large research artifacts live in release assets, not Git history.
-data/**/*.pkl
-data/**/*.csv
-data/**/*.shp
-data/**/*.shx
-data/**/*.dbf
-data/**/*.sbn
-data/**/*.sbx
-data/**/*.cpg
-data/**/*.prj
-data/**/*.xml
-models/checkpoints/*.pt
+# Data artifacts added to the working tree after the 2026-05-13 refactor
+# (subsequent context/buildings/DEM extension work) are not redistributed
+# in this repository.
+data/interim/
+data/experiments/*.pkl
+data/processed/aois/
+data/processed/context/
+data/processed/graphs/
+data/processed/split_shapefiles/
+data/processed/unet_tiles/
+data/raw/context/
+data/raw/gis/
+data/raw/mh_road/
+
+# Files over GitHub's 50 MB warning threshold are attached to releases
+# rather than tracked in Git history.
+data/experiments/data_MH_Road_attr.pkl
+data/processed/split_shapefiles/train.dbf
 
 # Release tooling
 release_assets/
+
+# Run artifacts from anchor-free development
+outputs/
+anchor_free_test_outputs/
+
+# Model checkpoints are experiment artifacts, not source.
+models/checkpoints/
+*.pt

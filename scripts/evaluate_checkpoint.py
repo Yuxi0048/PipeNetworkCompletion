@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import pickle
 import random
 import re
 import sys
+from dataclasses import asdict
 from pathlib import Path
 
 import numpy as np
@@ -19,6 +21,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from pipe_network_completion.paths import CHECKPOINT_DIR, GRAPH_DATA_DIR, METRICS_DIR
 from pipe_network_completion.evaluation import BinaryMetrics, evaluate_loader
+from pipe_network_completion.low_quality import apply_location_only_ablation
 from pipe_network_completion.model import (
     build_model_from_data,
     infer_architecture_from_state_dict,
@@ -118,6 +121,28 @@ def main() -> int:
     parser.add_argument("--threshold", type=float, default=0.5)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument(
+        "--node-feature-mode",
+        choices=["full", "location-only"],
+        default="full",
+        help=(
+            "Use full node features, or keep only the first two location columns "
+            "and zero all other MH/Road node attributes."
+        ),
+    )
+    parser.add_argument(
+        "--zero-edge-attrs",
+        action="store_true",
+        help=(
+            "Also zero edge_attr tensors. Off by default because the requested "
+            "low-quality ablation removes node attributes only."
+        ),
+    )
+    parser.add_argument(
+        "--output-json",
+        type=Path,
+        help="Optional path for observed metrics and ablation metadata.",
+    )
+    parser.add_argument(
         "--max-batches",
         type=int,
         help="Smoke-test mode; disables metrics comparison because it is partial.",
@@ -149,6 +174,17 @@ def main() -> int:
     data_path = GRAPH_DATA_DIR / f"{args.split}_data.pkl"
     with data_path.open("rb") as handle:
         data = pickle.load(handle)
+
+    ablation_report = None
+    if args.node_feature_mode == "location-only":
+        data, ablation_report = apply_location_only_ablation(
+            data,
+            zero_edge_attrs=args.zero_edge_attrs,
+        )
+        print("Applied location-only node-feature ablation.")
+        print(f"  zeroed node attribute dims: {ablation_report.zeroed_node_attribute_dims}")
+        if args.zero_edge_attrs:
+            print(f"  zeroed edge attribute dims: {ablation_report.zeroed_edge_attribute_dims}")
 
     edge_label_index = data[EDGE_TYPE].edge_label_index
     edge_label = data[EDGE_TYPE].edge_label
@@ -194,8 +230,29 @@ def main() -> int:
     )
     print_metrics("Observed metrics", observed)
 
+    if args.output_json is not None:
+        args.output_json.parent.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "split": args.split,
+            "checkpoint": str(args.checkpoint),
+            "node_feature_mode": args.node_feature_mode,
+            "zero_edge_attrs": bool(args.zero_edge_attrs),
+            "threshold": float(args.threshold),
+            "batch_size": int(args.batch_size),
+            "device": args.device,
+            "architecture": {"layers": list(layers), "skip": bool(skip)},
+            "metrics": asdict(observed),
+            "ablation": asdict(ablation_report) if ablation_report is not None else None,
+        }
+        args.output_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        print(f"Wrote metrics JSON: {args.output_json}")
+
     if args.max_batches is not None:
         print("Partial smoke test completed; metrics comparison skipped.")
+        return 0
+
+    if args.node_feature_mode != "full" or args.zero_edge_attrs:
+        print("Ablation run completed; published full-feature metrics comparison skipped.")
         return 0
 
     phase = {"train": "Training", "val": "Validation", "test": "Testing"}[args.split]

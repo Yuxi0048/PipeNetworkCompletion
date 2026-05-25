@@ -19,14 +19,6 @@ branch-based source traceability to the notebook-era repository state.
 The initial version of this repository was published on December 26, 2023, and
 the codebase was refactored by Codex and Claude Code on May 13, 2026.
 
-> [!CAUTION]
-> Data and model checkpoints are not distributed in this repository. Raw GIS
-> files, processed graph pickles, model checkpoints, and derived artifacts that
-> can reconstruct the utility network are excluded. Users must obtain source
-> data from the original public providers and follow their terms; the authors
-> cannot redistribute raw or derived data without separate written permission
-> from the providers.
-
 ## Quick Start
 
 ### Windows (PowerShell)
@@ -121,7 +113,7 @@ Each script supports `--help`.
 - [data/](data/): local layout for raw, interim, processed, and experiment data
   artifacts generated from provider-supplied inputs.
 - [models/checkpoints/](models/checkpoints/): saved PyTorch model checkpoints
-  for local evaluation; checkpoint files are not distributed in this repository.
+  for local evaluation, tracked directly in this repository.
 - [results/metrics/](results/metrics/): recorded metrics from previous model
   runs.
 
@@ -148,12 +140,13 @@ git switch main
 
 ## Data
 
-The source code is public. Raw GIS files, processed graph pickles, model
-checkpoints, and other artifacts that can reconstruct the utility network are
-not redistributed in this repository. Users should obtain source GIS data
-directly from the relevant public data providers and follow their terms of use.
-The authors do not redistribute raw or derived data artifacts unless separate
-written permission is obtained from the relevant data providers.
+The source code is public. The raw GIS inputs, interim pickles, and processed
+graph artifacts used in the ISARC 2024 study are included under `data/` for
+reproduction; the two files over 50 MB
+(`data/experiments/data_MH_Road_attr.pkl` and
+`data/processed/split_shapefiles/train.dbf`) are attached to GitHub Releases
+rather than tracked in Git. The trained PyTorch checkpoints under
+`models/checkpoints/` are included in this repository.
 
 ### Input Files For `process.py`
 
@@ -186,21 +179,8 @@ Generated local artifacts:
 - `data/processed/graphs/val_data.pkl`
 - `data/processed/graphs/test_data.pkl`
 
-Public GitHub releases should not attach these artifacts unless redistribution
-permission is documented.
-
-## Running With Restricted Data
-
-Readers can use the repository at two levels:
-
-1. **Code and environment check**: clone the repository, create the environment,
-   install the package, and run `scripts/verify_environment.py`. This path does
-   not require raw GIS files or model artifacts.
-2. **Provider-data workflow**: obtain GIS data directly from the relevant public
-   data providers, follow their terms of use, place the files in the documented
-   `data/raw/` layout, then run `process.py` and `scripts/build_graphs.py`.
-   Model evaluation requires locally generated graph artifacts and a checkpoint
-   the reader is permitted to use.
+Files over GitHub's 50 MB warning threshold are attached to releases rather
+than committed to Git history (see the note above).
 
 ## Tests
 

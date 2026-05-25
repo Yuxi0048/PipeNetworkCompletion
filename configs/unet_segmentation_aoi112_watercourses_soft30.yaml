@@ -1,0 +1,63 @@
+experiment_name: unet_segmentation_aoi112_watercourses_soft30
+mode: anchor_free_unet
+task_type: sewer_corridor_segmentation
+seed: 42
+
+data:
+  config_glob: configs/aois_2km_gap500_115_watercourses_complete/*.yaml
+  cadastral_dir: data/processed/context/study_area/cadastral_sewer_extent_exact_epsg28356
+  tile_index: data/processed/unet_tiles/aoi112_grid128_watercourses_soft30/tiles_index.csv
+
+raster:
+  target_crs: EPSG:28356
+  pixel_size_m: 10
+  tile_size_px: 128
+  label_buffer_m: 10
+  grid_tiles: true
+  uses_absolute_location_channels: false
+  include_watercourses: true
+  require_watercourse_complete: true
+  include_soft_context: true
+  soft_context_sigma_m: 30
+  input_channels:
+    - road_line
+    - road_distance_100m
+    - building_area
+    - building_distance_100m
+    - building_point_density_50m
+    - cadastral_road_distance_100m
+    - address_point_density_50m
+    - natural_boundary_distance_100m
+    - watercourse_drainage_line
+    - watercourse_drainage_distance_100m
+    - watercourse_corridor_centreline
+    - watercourse_corridor_centreline_distance_100m
+    - watercourse_corridor_area
+    - watercourse_corridor_distance_100m
+    - road_line_heatmap_30m
+    - cadastral_road_heatmap_30m
+    - natural_boundary_heatmap_30m
+    - building_area_heatmap_30m
+    - watercourse_drainage_heatmap_30m
+    - watercourse_corridor_centreline_heatmap_30m
+    - watercourse_corridor_area_heatmap_30m
+
+model:
+  package: segmentation_models_pytorch
+  architecture: Unet
+  encoder_name: resnet18
+  encoder_weights: none
+  epochs: 20
+  batch_size: 8
+  lr: 0.001
+  device: auto
+
+evaluation:
+  threshold: 0.5
+  metrics:
+    - roc_auc
+    - pr_auc
+    - precision
+    - recall
+    - f1
+    - iou
